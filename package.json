@@ -1,15 +1,15 @@
 {
-  "name": "nodejs-express-template",
+  "name": "live-stream-backend",
   "version": "1.0.0",
-  "description": "Scalable and basic template for making Node.js apps by using express",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "start": "nodemon index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier-eslint \"$PWD/{,!(node_modules)/**/}*.{js,json}\"",
     "format:fix": "prettier-eslint --write \"$PWD/{,!(node_modules)/**/}*.{js,json}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev:container": "docker run -p 3000:3000 -v $PWD:/docker-sample -v /docker-sample/node_modules docker-sample nodemon server.js"
   },
   "lint-staged": {
     "*.js": [

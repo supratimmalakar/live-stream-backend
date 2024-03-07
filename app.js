@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const expressip = require('express-ip');
 
+const broadcasterRouter = require('./src/broadcaster/routes');
+const viewerRouter = require('./src/viewer/routes');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -33,6 +36,11 @@ app.use((req, res, next) => {
   next();
 });
 
-require('./routes')(app);
+app.get('/', (req, res) => {
+  res.send('Welcome to the API');
+})
+
+app.use('/broadcaster', broadcasterRouter);
+app.use('/viewer', viewerRouter);
 
 module.exports = app;

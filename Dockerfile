@@ -1,13 +1,18 @@
-FROM node:12.14.1
+FROM node:18
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+RUN npm i -g nodemon
+
+COPY package.json ./
+COPY package-lock.json ./
 
 RUN npm install
 
 COPY . .
 
-EXPOSE 8080
+USER node
 
-CMD [ "npm", "start" ]
+ENV PORT=8080
+
+EXPOSE 8080
